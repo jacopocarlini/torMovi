@@ -1,0 +1,27 @@
+{
+  "name": "player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.4.13",
+    "express": "^4.14.0",
+    "torrent-stream": "^1.0.3",
+    "wcjs-player": "^6.0.1",
+    "wcjs-prebuilt": "^3.0.0"
+  },
+  "wcjs-prebuilt": {
+    "runtime": "electron",
+    "runtimeVersion": "v1.4.3",
+    "version": "v0.2.7"
+  },
+  "devDependencies": {
+    "electron": "^1.4.3"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jacopo",
+  "license": "ISC"
+}

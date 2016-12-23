@@ -1,0 +1,4 @@
+node_modules
+bin
+WebChimera.js.node
+*.log
