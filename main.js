@@ -60,12 +60,16 @@ app.on('activate', () => {
 
 
 ipcMain.on('open-movie-window', function () {
-  
+
     win.loadURL('file://' + __dirname + '/app/movie.html');
 });
 
-ipcMain.on('open-player-window', function () {
 
+
+ipcMain.on('open-player-window', (event, title) => {
     console.log("ricevuto");
     win.loadURL('file://' + __dirname + '/app/player.html');
+    ipcMain.on('play', (event, title2)=> {
+        event.sender.send('play', title)
+    });
 });

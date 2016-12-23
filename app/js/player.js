@@ -3,7 +3,14 @@ if (process.platform == 'win32')
 // var wjp = require("./node_modules/wcjs-prebuilt/index.js");
 var wjs = require("wcjs-player");
 var path = require('path');
-var magnetURI = 'magnet:?xt=urn:btih:06365dde7c82bf0624b5bd64badbd215375a4c6e&dn=Suicide+Squad+-+Extended+%282016%29.H264.Italian.English.Ac3.5.1.iCV-MIRCrew&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce'
+var icn=require('./lib/ilcorsaronero');
+const {ipcRenderer} = require('electron')
+
+ipcRenderer.on('play', (event, magnetURI) => {
+
+
+
+// var magnetURI = 'magnet:?xt=urn:btih:06365dde7c82bf0624b5bd64badbd215375a4c6e&dn=Suicide+Squad+-+Extended+%282016%29.H264.Italian.English.Ac3.5.1.iCV-MIRCrew&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce'
 // var magnetURI = "magnet:?xt=urn:btih:6a9759bffd5c0af65319979fb7832189f4f3c35d&dn=sintel.mp4&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel-1024-surround.mp4"
 
 var torrentStream = require('torrent-stream');
@@ -49,3 +56,5 @@ engine.on('ready', function() {
         console.log("vai");
     });
 });
+})
+ipcRenderer.send('play')
