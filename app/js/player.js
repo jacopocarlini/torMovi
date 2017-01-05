@@ -57,4 +57,5 @@ engine.on('ready', function() {
     });
 });
 })
+
 ipcRenderer.send('play')

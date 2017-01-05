@@ -5,7 +5,6 @@ const {app, BrowserWindow} = require('electron')
 const {ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
-var movies = null;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,7 +16,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'app/index.html'),
+    pathname: path.join(__dirname, 'test.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -60,22 +59,20 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 
-ipcMain.on('open-movie-window', (event, i) =>{
+ipcMain.on('open-movie-window', (event, title) =>{
     win.loadURL('file://' + __dirname + '/app/movie.html');
-    ipcMain.on('info', (event, dumb)=> {
-      event.sender.send('info', movies[i])
+    ipcMain.on('info', (event, title2)=> {
+      console.log("ricevuto");
+        event.sender.send('info', title)
     });
 });
 
-ipcMain.on('movies-list', (event, m) =>{
-    movies=m;
-});
 
 
-ipcMain.on('open-player-window', (event, magnet) => {
+ipcMain.on('open-player-window', (event, title) => {
     console.log("ricevuto");
     win.loadURL('file://' + __dirname + '/app/player.html');
-    ipcMain.on('play', (event, dumb)=> {
-        event.sender.send('play', magnet)
+    ipcMain.on('play', (event, title2)=> {
+        event.sender.send('play', title)
     });
 });
