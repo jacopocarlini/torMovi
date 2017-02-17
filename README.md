@@ -8,10 +8,12 @@ install **nodeJs** and **npm**
 
 #Installation (Windows, Linux and MacOS)
 Open a terminal and type this:
+
 `npm install`
 
 #Esecution
 In the root directory of eMovi open a terminal and use this command:
+
 `npm start`
 
 ----------------------------------
@@ -26,8 +28,15 @@ istallare **nodeJs** e **npm**
 
 #Istallazione (Windows, Linux and MacOS)
 Aprire il terminale e digitare questo:
+
 `npm install`
 
 #Esecuzione
 Nella cartella principale di eMovi aprire un terminale e usare il seguente comando:
+
 `npm start`
+
+
+#Screenshot
+
+![alt tag](https://github.com/jacopo1395/eMovi/blob/master/readme/info.png)
