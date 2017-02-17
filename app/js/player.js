@@ -7,7 +7,10 @@ var icn=require('../lib/ilcorsaronero');
 var torrentStream = require('torrent-stream');
 
 ipcRenderer.on('play', (event, magnetURI) => {
-var engine = torrentStream(magnetURI, {tmp: '../download', });
+  console.log(__dirname);
+  var p = path.resolve('./download');
+  console.log(p);
+var engine = torrentStream(magnetURI, {tmp: './download', });
 engine.on('ready', function() {
         var file = engine.files[0];
         console.log('filename:', file.name);
