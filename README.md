@@ -6,7 +6,7 @@ eMovi is a platform inspired to Popcorn-Time for streaming Italian torrents, bas
 #Prerequisites
 install **nodeJs** and **npm**
 
-#Installation ##(Windows, Linux and MacOS)
+#Installation (Windows, Linux and MacOS)
 Doesn't work on Raspberry pi 3, in particular WebChimera.
 Open a terminal and type this:
 
@@ -27,7 +27,7 @@ eMovi è una piattaforma  ispirata a Popcorn-Time per lo streaming di torrent It
 #Prerequisiti
 istallare **nodeJs** e **npm**
 
-#Istallazione ##(Windows, Linux and MacOS)
+#Istallazione (Windows, Linux and MacOS)
 Non funziona su Raspberry pi 3, in particolare WebChimera.
 Aprire il terminale e digitare questo:
 
@@ -44,4 +44,15 @@ Nella cartella principale di eMovi aprire un terminale e usare il seguente coman
 
 #Screenshot
 
-![alt tag](https://github.com/jacopo1395/eMovi/blob/master/readme/info.png)
+##Home
+
+![alt tag](https://github.com/jacopo1395/eMovi/blob/master/screenshot/index.png)
+
+##Player
+
+![alt tag](https://github.com/jacopo1395/eMovi/blob/master/screenshot/player.png)
+
+##Info
+
+
+![alt tag](https://github.com/jacopo1395/eMovi/blob/master/screenshot/info.png)
