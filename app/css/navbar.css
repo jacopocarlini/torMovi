@@ -1,0 +1,18 @@
+.navbar {
+    margin-bottom: 5px;
+}
+.navbar-brand:hover{
+    color: #CFD8DC;
+}
+.navbar-brand:visited {
+    color: #CFD8DC;
+}
+.nav:hover{
+    color: #263238;
+}
+a:hover {
+    color: #263238;
+}
+a:active {
+    color: #263238;
+}

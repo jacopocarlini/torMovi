@@ -1,0 +1,37 @@
+.box{
+    width:100%;
+}
+.wrapperImage{
+    height: 350px;
+    width: 200px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+}
+.image:hover{
+    opacity: 0.3;
+    filter: drop-shadow(4px 4px 4px #03A9F4);
+}
+.imageSelected{
+    opacity: 0.3;
+    filter: drop-shadow(4px 4px 4px #03A9F4);
+}
+.linkSelected{
+    background-color: #CFD8DC;
+    color: #263238;
+}
+.title{
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    font-size: 100%;
+}
+.rate{
+    position: absolute;
+    color: #448AFF;
+    bottom: 20px;
+    right: 0px;
+    font-size: 110%;
+}
+
+
+

@@ -1,7 +1,3 @@
-
-var icn=require('./lib/ilcorsaronero');
-let $ = require('jQuery');
-const {ipcRenderer} = require('electron')
 var movie = null;
 
 ipcRenderer.on('info', (event, m) => {
@@ -20,9 +16,9 @@ ipcRenderer.on('info', (event, m) => {
 
 
 ipcRenderer.send('info');
-
+var icn  = require('../lib/ilcorsaronero.js');
 function play(i){
-    console.log(movie.torrent[i].link);
+    console.log(movie.torrent[i]);
     icn.getMagnet(movie.torrent[i].link, function(err, res){
       ipcRenderer.send('open-player-window', res);
     });

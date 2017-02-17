@@ -3,7 +3,7 @@ if (process.platform == 'win32')
 // var wjp = require("./node_modules/wcjs-prebuilt/index.js");
 var wjs = require("wcjs-player");
 var path = require('path');
-var icn=require('./lib/ilcorsaronero');
+var icn=require('../lib/ilcorsaronero');
 const {ipcRenderer} = require('electron')
 
 ipcRenderer.on('play', (event, magnetURI) => {

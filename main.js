@@ -17,7 +17,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'app/index.html'),
+    pathname: path.join(__dirname, 'app/views/index.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -59,11 +59,23 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-
+var icn = require('./app/lib/ilcorsaronero.js');
 ipcMain.on('open-movie-window', (event, i) =>{
-    win.loadURL('file://' + __dirname + '/app/movie.html');
+    win.loadURL('file://' + __dirname + '/app/views/movie.html');
     ipcMain.on('info', (event, dumb)=> {
-      event.sender.send('info', movies[i])
+      icn.search(movies[i].title, "BDRiP", function (err, data) {
+          if (err) throw err;
+          // data.title = info.title;
+          // data.year = info.release_date.substring(0, 4);
+          // data.poster = info.poster_path;
+          // data.plot = info.overview;
+          // data.rate = info.vote_average;
+          // data.genres = info.genres;
+          movies[i].torrent = data;
+          event.sender.send('info', movies[i]);
+
+      });
+
     });
 });
 
@@ -74,7 +86,7 @@ ipcMain.on('movies-list', (event, m) =>{
 
 ipcMain.on('open-player-window', (event, magnet) => {
     console.log("ricevuto");
-    win.loadURL('file://' + __dirname + '/app/player.html');
+    win.loadURL('file://' + __dirname + '/app/views/player.html');
     ipcMain.on('play', (event, dumb)=> {
         event.sender.send('play', magnet)
     });

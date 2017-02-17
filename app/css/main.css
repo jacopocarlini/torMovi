@@ -1,0 +1,13 @@
+body{
+    background-color: #263238;
+    margin-bottom: 100px;
+}
+a {
+    color: #CFD8DC;
+}
+a:hover {
+    color: #CFD8DC;
+}
+a:active {
+    color: #CFD8DC;
+}
