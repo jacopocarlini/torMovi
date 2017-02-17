@@ -3,9 +3,8 @@ if (process.platform == 'win32')
 
 const {app, BrowserWindow} = require('electron')
 const {ipcMain} = require('electron')
+const url = require('url');
 const path = require('path')
-const url = require('url')
-var movies = null;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,7 +12,7 @@ let win
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600})
+  win = new BrowserWindow({width: 1200, height: 800})
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -21,7 +20,8 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-  // win.loadURL("http://localhost:8888/")
+
+  win.setMenu(null);
   // Open the DevTools.
   win.webContents.openDevTools()
 
@@ -59,33 +59,47 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+var mdb = require('moviedb')('89b43c0850f63d51b9a2fde38e6db2f6');
 var icn = require('./app/lib/ilcorsaronero.js');
-ipcMain.on('open-movie-window', (event, i) =>{
-    win.loadURL('file://' + __dirname + '/app/views/movie.html');
-    ipcMain.on('info', (event, dumb)=> {
-      icn.search(movies[i].title, "BDRiP", function (err, data) {
-          if (err) throw err;
-          // data.title = info.title;
-          // data.year = info.release_date.substring(0, 4);
-          // data.poster = info.poster_path;
-          // data.plot = info.overview;
-          // data.rate = info.vote_average;
-          // data.genres = info.genres;
-          movies[i].torrent = data;
-          event.sender.send('info', movies[i]);
+var movies = null;
 
-      });
-
-    });
+ipcMain.on('home', (event, i) =>{
+    win.loadURL('file://' + __dirname + '/app/views/index.html');
 });
 
-ipcMain.on('movies-list', (event, m) =>{
+ipcMain.on('open-movie-window', (event, i) =>{
+  var res={};
+  mdb.movieInfo({id: movies[i].id, language: 'it-IT'}, function (err, info) {
+      if (err) throw err;
+      icn.search(info.title, "BDRiP", function (err, data) {
+          if (err) throw err;
+          res.id = movies[i].id;
+          res.title = info.title;
+          res.year = info.release_date.substring(0, 4);
+          res.poster = info.poster_path;
+          res.plot = info.overview;
+          res.rate = info.vote_average;
+          res.genres = info.genres;
+          res.torrent=data;
+          mdb.movieCredits({id: movies[i].id}, function (err, cred) {
+              if (err) throw err;
+              res.cred = cred;
+              win.loadURL('file://' + __dirname + '/app/views/movie.html');
+              ipcMain.on('info', (event, dumb)=> {
+                event.sender.send('info',res );
+              });
+          });
+      });
+  });
+
+
+});
+
+ipcMain.on('set-movies', (event, m) =>{
     movies=m;
 });
 
-
 ipcMain.on('open-player-window', (event, magnet) => {
-    console.log("ricevuto");
     win.loadURL('file://' + __dirname + '/app/views/player.html');
     ipcMain.on('play', (event, dumb)=> {
         event.sender.send('play', magnet)

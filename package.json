@@ -7,6 +7,7 @@
     "cheerio": "^0.22.0",
     "electron": "^1.4.13",
     "express": "^4.14.0",
+    "moviedb": "^0.2.7",
     "torrent-stream": "^1.0.3",
     "wcjs-player": "^6.0.1",
     "wcjs-prebuilt": "^3.0.0"

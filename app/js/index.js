@@ -1,16 +1,21 @@
 /**
  * Created by jadac_000 on 13/02/2017.
  */
-const {ipcRenderer} = require('electron')
-const path = require('path')
-const url = require('url')
+const {ipcRenderer} = require('electron');
+const {app, BrowserWindow} = require('electron');
+var mdb = require('moviedb')('89b43c0850f63d51b9a2fde38e6db2f6');
+var $ = require('jquery');
+var page = 1;
 
-
-let $ = require('jquery');
-$.getJSON( "https://api.themoviedb.org/3/discover/movie?api_key=89b43c0850f63d51b9a2fde38e6db2f6&language=it-IT&sort_by=popularity.desc&include_adult=false&page=1", function( data ) {
+mdb.discoverMovie({
+        language: 'it-IT', sort_by: 'popularity.desc',
+        include_adult: 'false', include_video: 'false',
+        page: page, year: '2016'
+    }, function (err, data) {
       var items = [];
       var i = 0;
-      ipcRenderer.send('movies-list', data.results);
+      page++;
+      ipcRenderer.send('set-movies', data.results);
       $.each(data.results, function (key, val) {
           items.push("<div class='wrapperImage  col-sm-3 col-md-3 col-lg-2'  id='" + key + "' > <a class='link' onCLick='return movie("+key+");' href='#'> <img width='190' height='280'  src='http://image.tmdb.org/t/p/w185//" + val.poster_path + "' class='image'> </a> <h2 class='title' width='150'> <a href=''>" + setTitle(val.title) + "</a> <h2 class='rate'>"+val.vote_average+"</h2> </h2></div>");
       });
@@ -18,20 +23,30 @@ $.getJSON( "https://api.themoviedb.org/3/discover/movie?api_key=89b43c0850f63d51
           "class": "row",
           html: items.join("")
       }).appendTo(".box");
-
+      $(window).scroll(load);
   });
 
-// $.getJSON("http://localhost:8888/genres", function(data){
-//     var items = [];
-//     $.each(data.genres, function (key, val) {
-//        items.push("<li> <a id = '"+val.id+"' onClick = 'filter(this.id);'>"+val.name+" </a></li>");
-//     });
-//     $("#genres").append(items.join(""));
-// });
+mdb.genreMovieList({language: "it-IT"}, function (err, data) {
+    if (err) throw err;
+    var items = [];
+    m=data.results;
+    ipcRenderer.send('set-movies', data.results);
+    $.each(data.genres, function (key, val) {
+       items.push("<li> <a id = '"+val.id+"' onClick = 'filter(this.id);'>"+val.name+" </a></li>");
+    });
+    $("#genres").append(items.join(""));
+});
 
-function filter(g) {
-    console.log(g);
-    $.getJSON("http://localhost:8888/film/1?g="+g, function (data) {
+
+
+//tools
+function filter(gnr) {
+    console.log(gnr);
+    mdb.discoverMovie({
+            language: 'it-IT', sort_by: 'popularity.desc',
+            include_adult: 'false', include_video: 'false',
+            page: 1, year: '2016', with_genres:gnr
+        }, function (err, data) {
         var items = [];
         var i = 0;
         $.each(data.results, function (key, val) {
@@ -60,7 +75,8 @@ document.onkeydown = function (evt) {
 
     evt = evt || window.event;
     if (selected == null) {
-        $("#0").children().children(".image").addClass("imageSelected");
+        // $("#0").children().children(".image").addClass("imageSelected");
+        $("#0").children().children(".image").hover();
         selected = 0;
         return;
     }
@@ -180,3 +196,30 @@ function movie(i){
     console.log(i);
     ipcRenderer.send('open-movie-window', i);
 }
+
+function home(){
+  ipcRenderer.send('home');
+}
+
+function load(){
+  console.log('load');
+   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+      $(window).unbind('scroll');
+       console.log("near bottom!");
+       mdb.discoverMovie({
+               language: 'it-IT', sort_by: 'popularity.desc',
+               include_adult: 'false', include_video: 'false',
+               page: page, year: '2016'
+           }, function (err, data) {
+             var items = [];
+             var i = 0;
+             page++;
+             ipcRenderer.send('set-movies', data.results);
+             $.each(data.results, function (key, val) {
+                 items.push("<div class='wrapperImage  col-sm-3 col-md-3 col-lg-2'  id='" + key + "' > <a class='link' onCLick='return movie("+key+");' href='#'> <img width='190' height='280'  src='http://image.tmdb.org/t/p/w185//" + val.poster_path + "' class='image'> </a> <h2 class='title' width='150'> <a href=''>" + setTitle(val.title) + "</a> <h2 class='rate'>"+val.vote_average+"</h2> </h2></div>");
+             });
+             $('.row').append(items.join(""));
+             $(window).scroll(load);
+         });
+   }
+ }

@@ -2,16 +2,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-//return an array object
- // result.{
-//     "cat": catScraped,
-//     "name": name,
-//     "link": link,
-//     "size": size,
-//     "date": date,
-//     "seeds": seeds,
-//     "peers": peers
-// };
+
 function search(term, cat, callback) {
     if (typeof term !== 'string') {
         callback(new Error("You must enter a string to search."));
@@ -20,7 +11,6 @@ function search(term, cat, callback) {
     scrape("http://ilcorsaronero.info/argh.php?search=" + encodeURIComponent(term), cat, callback);
 }
 
-//return the magnet link
 function getMagnet(url, callback) {
     request(url, function (error, response, body) {
         if (!error) {
