@@ -1,7 +1,7 @@
 ![English](https://img.shields.io/badge/language-English-brightgreen.svg)
 
 # eMovi
-eMovi is a platform inspired by Popcorn-Time for streaming Italian torrents, based by Electron. It uses WebChimera (wcjs-prebuilt and wcjs-player) and torrent-stream (Peerflix). The information of the movies are retrieved from ThemovieDB APIs and the torrent files are retrieved from ilcorsaronero.org.
+eMovi is a platform inspired by Popcorn-Time for streaming Italian torrents, based on Electron. It uses WebChimera (wcjs-prebuilt and wcjs-player) and torrent-stream (Peerflix). The information of the movies are retrieved from ThemovieDB APIs and the torrent files are retrieved from ilcorsaronero.org.
 
 #Prerequisites
 install **nodeJS** and **npm**
