@@ -4,7 +4,7 @@
 eMovi is a platform inspired by Popcorn-Time for streaming Italian torrents, based on Electron. It uses WebChimera (wcjs-prebuilt and wcjs-player) and torrent-stream (Peerflix). The information of the movies are retrieved from ThemovieDB APIs and the torrent files are retrieved from ilcorsaronero.org.
 
 #Prerequisites
-install **nodeJS** and **npm**
+install **nodeJS** and **npm** and **vlc**
 
 #Installation (Windows, Linux and MacOS)
 _Doesn't work on Raspberry pi 3, in particular WebChimera._
@@ -26,7 +26,7 @@ In the root directory of eMovi open a terminal and use this command:
 eMovi è una piattaforma  ispirata a Popcorn-Time per lo streaming di torrent Italian, basata su Electron. Usa WebChimera (wcjs-prebuilt and wcjs-player) e torrent-stream (Peerflix). Le informazioni dei film sono recuperate dalle API di ThemovieDB e i file torrent sono presi da ilcorsaronero.org.
 
 #Prerequisiti
-istallare **nodeJS** e **npm**
+istallare **nodeJS** e **npm** e **vlc**
 
 #Istallazione (Windows, Linux and MacOS)
 _Non funziona su Raspberry pi 3, in particolare WebChimera._
