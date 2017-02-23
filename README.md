@@ -1,7 +1,7 @@
 ![English](https://img.shields.io/badge/language-English-brightgreen.svg)
 
-# eMovi
-eMovi is a platform inspired by Popcorn-Time for streaming Italian torrents, based on Electron. It uses WebChimera (wcjs-prebuilt and wcjs-player) and torrent-stream (Peerflix). The information of the movies are retrieved from ThemovieDB APIs and the torrent files are retrieved from ilcorsaronero.org.
+# torMovi
+torMovi is a platform inspired by Popcorn-Time for streaming Italian torrents, based on Electron. It uses WebChimera (wcjs-prebuilt and wcjs-player) and torrent-stream (Peerflix). The information of the movies are retrieved from ThemovieDB APIs and the torrent files are retrieved from ilcorsaronero.org.
 
 #Prerequisites
 install **nodeJS** and **npm** and **vlc**
@@ -14,7 +14,7 @@ Open a terminal and type this:
 `npm install`
 
 #Esecution
-In the root directory of eMovi open a terminal and use this command:
+In the root directory of torMovi open a terminal and use this command:
 
 `npm start`
 
@@ -22,8 +22,8 @@ In the root directory of eMovi open a terminal and use this command:
 
 ![Italiano](https://img.shields.io/badge/lingua-Italiano-brightgreen.svg)
 
-# eMovi
-eMovi è una piattaforma  ispirata a Popcorn-Time per lo streaming di torrent Italian, basata su Electron. Usa WebChimera (wcjs-prebuilt and wcjs-player) e torrent-stream (Peerflix). Le informazioni dei film sono recuperate dalle API di ThemovieDB e i file torrent sono presi da ilcorsaronero.org.
+# torMovi
+torMovi è una piattaforma  ispirata a Popcorn-Time per lo streaming di torrent Italian, basata su Electron. Usa WebChimera (wcjs-prebuilt and wcjs-player) e torrent-stream (Peerflix). Le informazioni dei film sono recuperate dalle API di ThemovieDB e i file torrent sono presi da ilcorsaronero.org.
 
 #Prerequisiti
 istallare **nodeJS** e **npm** e **vlc**
@@ -36,7 +36,7 @@ Aprire il terminale e digitare questo:
 `npm install`
 
 #Esecuzione
-Nella cartella principale di eMovi aprire un terminale e usare il seguente comando:
+Nella cartella principale di torMovi aprire un terminale e usare il seguente comando:
 
 `npm start`
 
