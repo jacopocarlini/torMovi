@@ -1,5 +1,5 @@
 var movie = null;
-var mdb = require('moviedb')('89b43c0850f63d51b9a2fde38e6db2f6');
+var mdb = require('moviedb')('your api key');
 
 ipcRenderer.on('info', (event, data) => {
   movie = data;
