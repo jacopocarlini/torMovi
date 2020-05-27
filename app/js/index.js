@@ -3,7 +3,7 @@
  */
 const {ipcRenderer} = require('electron');
 const {app, BrowserWindow} = require('electron');
-var mdb = require('moviedb')('89b43c0850f63d51b9a2fde38e6db2f6');
+var mdb = require('moviedb')('your api key');
 var $ = require('jquery');
 var page = 1;
 
